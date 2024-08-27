@@ -1,0 +1,95 @@
+@font-face {
+  font-family: "RussoOne";
+  src: url("RussoOne-Regular.ttf");
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  transition: all .2s ease;
+}
+
+html {
+  font-family: "Open sans", sans-serif;
+  font-size: 10px;
+  scrollbar-color: #404040 #252525;
+}
+
+body {
+  background-color: #202020;
+  color: #D0D0D0;
+  line-height: 1.3;
+  margin: 0;
+}
+
+input,
+button {
+  border: .2rem solid transparent;
+  padding: 1rem 1.5rem;
+  line-height: inherit;
+  font-family: inherit;
+  border-radius: .5rem;
+}
+
+input {
+  background-color: #303030;
+  color: #B0B0B0;
+  border-color: #202020;
+  font-size: 1.8rem;
+  width: 100%;
+}
+
+input:focus {
+  border-color: #505050;
+}
+
+button {
+  background-color: #303030;
+  color: #B0B0B0;
+  border-color: #202020;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+button:hover,
+button:focus {
+  background-color: #404040;
+}
+
+button:active {
+  background-color: #505050;
+}
+
+.container {
+  display: block;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 2rem .5rem;
+}
+
+.input-group {
+  padding: .5rem;
+}
+
+.input-title {
+  font-size: 1.85rem;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+
+.btn {
+  max-width: 100%;
+  width: 30rem;
+}
+
+.title-with-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
