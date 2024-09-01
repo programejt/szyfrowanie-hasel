@@ -1,25 +1,53 @@
-document.addEventListener("click", function (ev) {
-  var target = ev.target;
-  if (target.classList.contains("copy-btn")) {
-    var textContainer = target.parentElement.previousElementSibling.children[0];
+let enableSaltCheckbox, passwordSaltFormSection;
 
-    /*if(document.selection){
-      var range = document.body.createTextRange();
-      range.moveToElementText(textContainer);
-      range.select();
-    }else */
-    // if (window.getSelection) {
-    //   var range = document.createRange();
-    //   range.selectNodeContents(textContainer);
-    //   window.getSelection().removeAllRanges();
-    //   window.getSelection().addRange(range);
-    // }
+document.addEventListener("click", copyTextFromInput);
+document.addEventListener("click", removeContainer);
+document.addEventListener('click', toggleInputPassowordCharsVisibility);
+document.addEventListener('DOMContentLoaded', function () {
+  enableSaltCheckbox = document.getElementById('enable-salt-checkbox');
+  passwordSaltFormSection = document.getElementById('password-salt');
 
-    textContainer.select();
+  enableSaltCheckbox.addEventListener('change', togglePasswordSaltFieldsetVisibility);
 
-    document.execCommand("copy");
-  } else if (target.classList.contains('close-btn')) {
-    let elementToRemove = target.parentElement.parentElement;
+  togglePasswordSaltFieldsetVisibility();
+});
+
+function togglePasswordSaltFieldsetVisibility() {
+  passwordSaltFormSection.classList.toggle('hidden', !enableSaltCheckbox.checked);
+  passwordSaltFormSection.disabled = !enableSaltCheckbox.checked;
+}
+
+function copyTextFromInput(ev) {
+  let button = ev.target.closest('button.copy-btn');
+  if (button) {
+    var textContainer = button.previousElementSibling;
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(textContainer.value);
+    } else {
+      textContainer.select();
+
+      document.execCommand("copy");
+    }
+  }
+}
+
+function removeContainer(ev) {
+  let button = ev.target.closest('button.close-btn');
+  if (button) {
+    let elementToRemove = button.parentElement.parentElement;
     elementToRemove.remove();
   }
-}, true);
+}
+
+function toggleInputPassowordCharsVisibility(ev) {
+  let button = ev.target.closest('button.toggle-password-visibility');
+  if (button) {
+    let input = button.previousElementSibling;
+    if (input.type !== 'password') {
+      input.type = 'password';
+    } else {
+      input.type = 'text';
+    }
+  }
+}
